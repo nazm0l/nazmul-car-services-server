@@ -22,6 +22,7 @@ async function run() {
             await client.connect();
             const carCollection = client.db('nazmulCar').collection('cars');
 
+            //total car
             app.get('/cars', async(req, res) =>{
               const query = {};
               const cursor = carCollection.find(query);
@@ -29,6 +30,7 @@ async function run() {
               res.send(cars);
             });
 
+            //single car
             app.get('/cars/:id', async(req, res) =>{
               const id = req.params.id;
               const query = {_id: ObjectId(id)};
@@ -44,7 +46,7 @@ async function run() {
               res.send(result);
             });
 
-            //delete
+            //delete car
 
             app.delete('/cars/:id', async(req, res) => {
               const id = req.params.id;
